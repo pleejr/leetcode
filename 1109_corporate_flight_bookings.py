@@ -49,44 +49,27 @@ tests = [
     },
 ]
 
+def main():
+    sol = Solution()
+    results = []
+    for test in tests:
+        results.append(sol.corpFlightBookings(test["bookings"], test["n"]))
+    for i in range(len(results)):
+        if results[i] == tests[i]["answer"]:
+            print(f"Correct: {results[i]}")
+        else:
+            print(f"Incorrect: {results[i]}")
+    return
+
 class Solution:
     def corpFlightBookings(self, bookings: list[list[int]], n: int) -> list[int]:
         answer = [0] * (n + 1)
-
-        # inefficient solution
-        # bookings = self.simplify(bookings)
-        # for first, last, seats in bookings:
-        #     for i in range(first, last + 1):
-        #         answer[i] += seats
-
         for first, last, seat in bookings:
             answer[first-1] += seat
             answer[last] -= seat
         answer = list(accumulate(answer[:-1]))
 
         return answer
-    
-    # inefficient solution helper
-    # def simplify(self, bookings: list[list[int]]) -> list[list[int]]:
-    #     simplified = []
-    #     uniques = {}
-    #     for booking in bookings:
-    #         t, seats = (booking[0], booking[1]), booking[2]
-    #         if t not in uniques:
-    #             uniques[t] = seats
-    #         else:
-    #             uniques[t] += seats
-    #     for k, v in uniques.items():
-    #         simplified.append([k[0], k[1], v])
-    #     return simplified
 
-sol = Solution()
-
-t0 = sol.corpFlightBookings(tests[0]["bookings"], tests[0]["n"])
-t1 = sol.corpFlightBookings(tests[1]["bookings"], tests[1]["n"])
-
-# print(t0)
-# print(t1)
-
-assert t0 == tests[0]["answer"]
-assert t1 == tests[1]["answer"]
+if __name__ == "__main__":
+    main()
