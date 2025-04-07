@@ -19,15 +19,16 @@
 # Output: [8,9,9,9,0,0,0,1]
 
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 # Constraints:
 # The number of nodes in each linked list is in the range [1, 100].
 # 0 <= Node.val <= 9
 # It is guaranteed that the list represents a number that does not have leading zeros.
+from typing import Optional
 
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
